@@ -31,4 +31,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.0'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+
+    //dependency injection framework
+    compile 'com.github.salomonbrys.kodein:kodein:4.1.0'
+    compile 'com.github.salomonbrys.kodein:kodein-conf:4.1.0'
+
 }
