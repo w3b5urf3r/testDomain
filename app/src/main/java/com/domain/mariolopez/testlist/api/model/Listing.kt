@@ -12,7 +12,7 @@ class Listing {
     val agencyLogoUrl: String = ""
 
     @SerializedName("Bathrooms")
-    val bathrooms: Int =0
+    val bathrooms: Int = 0
 
     @SerializedName("Bedrooms")
     val bedrooms: String = ""
@@ -24,19 +24,22 @@ class Listing {
     val displayPrice: String = ""
 
     @SerializedName("DisplayableAddress")
-    val DisplayableAddress: String = ""
+    val displayableAddress: String = ""
 
     @SerializedName("TruncatedDescription")
     val truncatedDescription: String = ""
 
     @SerializedName("RetinaDisplayThumbUrl")
-    val RetinaDisplayThumbUrl: String = ""
+    val retinaDisplayThumbUrl: String = ""
 
     @SerializedName("SecondRetinaDisplayThumbUrl")
-    val SecondRetinaDisplayThumbUrl: String = ""
+    val secondRetinaDisplayThumbUrl: String = ""
 
     @SerializedName("IsElite")
-    val IsElite: String = ""
+    val isEliteNum: Int = 0
+    val IsElite: Boolean = isEliteNum.intToBoolean()
 
 
 }
+
+private fun Int.intToBoolean(): Boolean = this  == 1
