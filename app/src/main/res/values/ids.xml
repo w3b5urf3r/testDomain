@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="mainContainer" type="id">mainContainer</item>
+    <item name="text1" type="id">text1</item>
+    <item name="testmario1" type="id">test_mario1</item>
+</resources>
