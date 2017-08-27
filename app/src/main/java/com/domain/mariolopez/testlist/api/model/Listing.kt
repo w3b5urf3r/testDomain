@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName
 
 class Listing {
 
+    @SerializedName("AdId")
+    val adId: String = ""
     @SerializedName("AgencyLogoUrl")
     val agencyLogoUrl: String = ""
 
@@ -15,10 +17,10 @@ class Listing {
     val bathrooms: Int = 0
 
     @SerializedName("Bedrooms")
-    val bedrooms: String = ""
+    val bedrooms: Int = 0
 
     @SerializedName("Carspaces")
-    val carspaces: String = ""
+    val carspaces: Int = 0
 
     @SerializedName("DisplayPrice")
     val displayPrice: String = ""
@@ -37,9 +39,10 @@ class Listing {
 
     @SerializedName("IsElite")
     val isEliteNum: Int = 0
-    val IsElite: Boolean = isEliteNum.intToBoolean()
 
+    val isEliteBoolean: Boolean
+        get() = isEliteNum.binaryIntToBoolean()
 
 }
 
-private fun Int.intToBoolean(): Boolean = this  == 1
+fun Int.binaryIntToBoolean(): Boolean = this == 1

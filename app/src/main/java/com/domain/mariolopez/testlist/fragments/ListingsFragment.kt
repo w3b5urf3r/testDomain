@@ -1,0 +1,124 @@
+package com.domain.mariolopez.testlist.fragments
+
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.domain.mariolopez.testlist.BaseFragment
+import com.domain.mariolopez.testlist.api.RestAdapter
+import com.domain.mariolopez.testlist.api.model.Listing
+import com.domain.mariolopez.testlist.ui.adapter.ListingsAdapter
+import com.domain.mariolopez.testlist.ui.presenter.Presenter
+import com.domain.mariolopez.testlist.ui.screens.ListingsFragmentUI
+import com.github.salomonbrys.kodein.instance
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.schedulers.Schedulers
+import org.jetbrains.anko.toast
+
+/**
+ * Created by mariolopez on 26/8/17.
+ */
+class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
+
+    interface ViewModel : com.domain.mariolopez.testlist.ui.ViewModel {
+        //producers
+        fun listingClicks(): Observable<Any>?
+
+        //consumers
+        fun showListings(listings: List<Listing>)
+
+        fun showId(adId: String)
+
+    }
+
+
+    var ui: ListingsFragmentUI? = null
+
+    lateinit var listingsPresenter: ListingsPresenter
+    val listingAdapter = ListingsAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ui = container?.let { ListingsFragmentUI(container) }
+        return ui?.inflate()?.setup()
+    }
+
+    private fun View.setup(): View {
+        return this
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        ui?.recycler?.adapter = listingAdapter
+        ui?.recycler?.layoutManager = LinearLayoutManager(this.context)
+        listingsPresenter = ListingsPresenter()
+        listingsPresenter.bindView(viewModel)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onDestroyView() {
+        listingsPresenter.unbindView(viewModel)
+        super.onDestroyView()
+    }
+
+    override val viewModel: ViewModel by lazy {
+        object : ViewModel {
+            override fun listingClicks(): Observable<Any>? {
+                return (ui?.recycler?.adapter as? ListingsAdapter)?.itemClicks
+            }
+
+
+            override fun showListings(listings: List<Listing>) {
+                (ui?.recycler?.adapter as? ListingsAdapter)?.items = listings
+            }
+
+            override fun showId(adId: String) {
+                activity.toast(adId)
+            }
+
+        }
+    }
+}
+
+class ListingsPresenter : Presenter<ListingsFragment.ViewModel>() {
+
+    //    val busEvent: RxBus by kodein.instance()
+    val restAdapter: RestAdapter by kodein.instance()
+
+    override fun bindReactive() {
+//        toDispose += peripheralEvents.subscribe {
+//            view!!.showOutPut(it.value.orEmpty())
+//        }
+//        toDispose += view!!
+//                .linkClicks
+//                no need to check bluetooth permission
+//                .compose(rxPermissions.ensure(Manifest.permission.BLUETOOTH))
+//                .subscribe {
+//                    view!!.linkHardware()
+//                    busEvent.post(Navigation.MAP_FRAGMENT())
+//                }
+
+        toDispose += restAdapter.getListings()
+                .subscribeOn(Schedulers.io()) // “work” on io thread
+                .observeOn(AndroidSchedulers.mainThread()) // “listen” on UIThread
+                .subscribe {
+                    //todo
+                    view?.showListings(it.listings)
+//                    Log.d("List", it.listings.toString())
+                }
+
+        view?.listingClicks()!!.subscribe {
+            view?.showId((it as Listing).adId)
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package com.maxwellforest.ui.ui.activity
+package com.domain.mariolopez.testlist.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar

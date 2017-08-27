@@ -20,6 +20,28 @@ allprojects {
         google()
         jcenter()
     }
+    ext {
+        // Android config
+        androidBuildToolsVersion = "26.0.0"
+        androidMinSdkVersion = 16
+        androidTargetSdkVersion = 26
+        androidCompileSdkVersion = 26
+        supportVersion = "26.0.1"
+        ankoVersion= "0.10.1"
+
+        retrofitVersion = "2.2.0"
+        assertJcoreVersion= "3.8.0"
+        mockitoKotlinVersion= "1.5.0"
+        kodeinVersion= "4.1.0"
+        retrofitVersion= "2.3.0"
+        rxJavaVersion= "2.1.3"
+        rxAndroidVersion= "2.0.1"
+        rxKotlinVersion= "2.0.0"
+        rx2bindings = "2.0.0"
+
+        junitVersion = "4.12"
+        okhttpVersion = "3.6.0"
+    }
 }
 
 task clean(type: Delete) {
