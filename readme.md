@@ -12,6 +12,11 @@ The project is intended for an expert audience, it's written entirely in kotlin 
 Anko is used (for better performances and style)
 KodeIn is a light framework entirely written in kotlin for better perfomance.
 
+Note for the reviewer: in Robolectric 3.4.2 the Build config is automatically detected
+unfortunately Robolectric is still not compatible with android studio
+git issue: [issue link](https://github.com/robolectric/robolectric/issues/3184)
+Although some of the tests added classes will fail for this reason, this code will suffice as a showcase
+
 ###### Features :
 * Kotlin
 * Reactive

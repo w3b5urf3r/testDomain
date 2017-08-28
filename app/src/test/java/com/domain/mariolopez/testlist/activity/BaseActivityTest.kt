@@ -19,10 +19,6 @@ import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowToast
 
 
-//note for the reviewer: in Robolectric 3.4 the Build config it's automatically detected
-//unfortunately Robolectric is still not compatible with android studio
-//git issue https://github.com/robolectric/robolectric/issues/3184
-//this base activity code will fail for this reason, code is just put here as showcase
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class, application = TestApp::class)
 class BaseActivityTest {
