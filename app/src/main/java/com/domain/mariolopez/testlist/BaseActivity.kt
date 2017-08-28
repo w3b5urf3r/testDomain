@@ -34,8 +34,8 @@ abstract class BaseActivity<out UI : ActivityAnkoComponent<out AppCompatActivity
 
     }
 
-    protected fun showToast(error: Throwable) {
-        toast(error.message.toString())
+    protected fun showToastUi(message: String) {
+        toast(message)
     }
 
     override fun onStart() {

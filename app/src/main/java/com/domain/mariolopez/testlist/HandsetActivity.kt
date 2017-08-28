@@ -35,7 +35,7 @@ class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewMode
             }
 
             override fun showToast(message: String) {
-                showToast(message)
+                showToastUi(message)
 
             }
         }
