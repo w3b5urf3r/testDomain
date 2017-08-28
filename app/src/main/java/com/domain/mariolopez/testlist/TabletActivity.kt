@@ -13,7 +13,6 @@ class TabletActivity : BaseActivity<TabletActivityUI, TabletActivity.ViewModel>(
         //consumers
         fun navigateTo()
 
-        fun showError(error: Throwable)
     }
 
     override val ui: TabletActivityUI = TabletActivityUI()
@@ -28,14 +27,9 @@ class TabletActivity : BaseActivity<TabletActivityUI, TabletActivity.ViewModel>(
 
             override fun navigateTo() {
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.mainContainer, ListingsFragment(),"CIAO").commit()
+                        .replace(R.id.mainContainer, ListingsFragment(), "CIAO").commit()
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.secondPaneContainer, IdFragment()).commit()
-            }
-
-            override fun showError(error: Throwable) {
-                showToast(error)
-
             }
         }
     }
