@@ -63,11 +63,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rx2bindings"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rx2bindings"
-//    implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rx2bindings"
 
     //kotlin anko
     implementation "org.jetbrains.anko:anko:$ankoVersion"
-//  implementation  "org.jetbrains.anko:anko-sdk15:0.10.1"
     implementation "org.jetbrains.anko:anko-support-v4:$ankoVersion"
     implementation "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     implementation "org.jetbrains.anko:anko-support-v4:$ankoVersion"
