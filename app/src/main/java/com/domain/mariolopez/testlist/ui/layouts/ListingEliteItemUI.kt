@@ -11,9 +11,6 @@ import com.domain.mariolopez.testlist.ui.ViewAnkoComponent
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-/**
- * Created by mariolopez on 27/8/17.
- */
 class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<RecyclerView> {
 
 
@@ -43,18 +40,26 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
                     space {
                         id = R.id.space_view
                     }.lparams(width = dip(5)) {
-                        centerInParent()
+                            centerInParent()
+
                     }
                     houseImage2 = imageView().lparams(matchParent, matchParent) {
                         height = dip(150)
-                        alignParentStart()
+                        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            alignParentStart()
+                        } else {
+                            alignParentLeft()
+                        }
                         leftOf(R.id.space_view)
                     }
                     houseImage = imageView().lparams(matchParent, matchParent) {
                         height = dip(150)
-                        alignParentEnd()
+                        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            alignParentEnd()
+                        } else {
+                            alignParentRight()
+                        }
                         rightOf(R.id.space_view)
-
                     }
                 }.lparams(matchParent, wrapContent)
 
