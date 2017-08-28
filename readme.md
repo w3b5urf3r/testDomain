@@ -15,7 +15,7 @@ KodeIn is a light framework entirely written in kotlin for better perfomance.
 ###### Features :
 * Kotlin
 * Reactive
-* Anko [this link](https://github.com/Kotlin/anko)
-* KodeIn
+* Anko [link link](https://github.com/Kotlin/anko)
+* KodeIn [link link](https://github.com/SalomonBrys/Kodein)
 * Glide  
  
