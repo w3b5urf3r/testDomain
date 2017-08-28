@@ -55,7 +55,6 @@ class ListingsAdapter : BaseAdapter<Listing>() {
         } else {
             return ListingItemUI(parent)
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {

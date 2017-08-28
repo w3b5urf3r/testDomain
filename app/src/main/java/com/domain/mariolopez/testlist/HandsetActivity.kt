@@ -1,37 +1,41 @@
 package com.domain.mariolopez.testlist
 
+import com.domain.mariolopez.testlist.api.model.Listing
 import com.domain.mariolopez.testlist.fragments.ListingsFragment
 import com.domain.mariolopez.testlist.ui.presenter.Presenter
-import com.maxwellforest.safedome.ui.screens.MainActivityUI
+import com.domain.mariolopez.testlist.util.RxBus
+import com.github.salomonbrys.kodein.instance
+import com.maxwellforest.safedome.ui.screens.HandsetActivityUI
 import io.reactivex.Scheduler
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 
-class MainActivity : BaseActivity<MainActivityUI, MainActivity.ViewModel>() {
+class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewModel>() {
 
     interface ViewModel : com.domain.mariolopez.testlist.ui.ViewModel {
         //consumers
         fun navigateTo()
 
-        fun showError(error: Throwable)
+        fun showToast(message: String)
     }
 
-    override val ui: MainActivityUI = MainActivityUI()
+    override val ui: HandsetActivityUI = HandsetActivityUI()
     override val presenter by lazy { MainPresenter(Schedulers.io()) }
 
     override fun initPresenter() {
         presenter.initState()
     }
 
-    override val viewModel: MainActivity.ViewModel by lazy {
+    override val viewModel: HandsetActivity.ViewModel by lazy {
         object : ViewModel {
 
             override fun navigateTo() {
-                supportFragmentManager.beginTransaction().replace(
-                        R.id.mainContainer, ListingsFragment()).commit()
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.mainContainer, ListingsFragment()).commit()
             }
 
-            override fun showError(error: Throwable) {
-                showToastError(error)
+            override fun showToast(message: String) {
+                showToast(message)
 
             }
         }
@@ -39,7 +43,17 @@ class MainActivity : BaseActivity<MainActivityUI, MainActivity.ViewModel>() {
 
 }
 
-class MainPresenter(scheduler: Scheduler) : Presenter<MainActivity.ViewModel>(scheduler) {
+class MainPresenter(scheduler: Scheduler) : Presenter<HandsetActivity.ViewModel>(scheduler) {
+    val busEvent: RxBus by kodein.instance()
+    override fun bindReactive() {
+        super.bindReactive()
+        toDispose += busEvent.rxBus
+                .filter { it is Listing }
+                .map { it as Listing }
+                .subscribe {
+                    view?.showToast(it.adId)
+                }
+    }
     fun initState() {
         view?.navigateTo()
     }

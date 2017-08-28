@@ -29,7 +29,7 @@ abstract class BaseAdapter<Item>
         val baseViewHolder = BaseViewHolder(onCreateComponent(parent as RecyclerView, viewType))
         RxView.clicks(baseViewHolder.itemView)
                 .takeUntil(RxView.detaches(parent))
-                .map<Any> { aVoid -> baseViewHolder.itemView.tag }
+                .map<Any> { baseViewHolder.itemView.tag }
                 .subscribe { itemClicksSubject.onNext(it) }
 
         return baseViewHolder

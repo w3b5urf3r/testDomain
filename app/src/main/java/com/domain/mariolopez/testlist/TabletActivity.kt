@@ -1,12 +1,13 @@
 package com.domain.mariolopez.testlist
 
+import com.domain.mariolopez.testlist.fragments.IdFragment
 import com.domain.mariolopez.testlist.fragments.ListingsFragment
 import com.domain.mariolopez.testlist.ui.presenter.Presenter
-import com.maxwellforest.safedome.ui.screens.HandsetActivityUI
+import com.domain.mariolopez.testlist.ui.screens.TabletActivityUI
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
-class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewModel>() {
+class TabletActivity : BaseActivity<TabletActivityUI, TabletActivity.ViewModel>() {
 
     interface ViewModel : com.domain.mariolopez.testlist.ui.ViewModel {
         //consumers
@@ -15,23 +16,25 @@ class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewMode
         fun showError(error: Throwable)
     }
 
-    override val ui: HandsetActivityUI = HandsetActivityUI()
-    override val presenter by lazy { MainPresenter(Schedulers.io()) }
+    override val ui: TabletActivityUI = TabletActivityUI()
+    override val presenter by lazy { TabletMainPresenter(Schedulers.io()) }
 
     override fun initPresenter() {
         presenter.initState()
     }
 
-    override val viewModel: HandsetActivity.ViewModel by lazy {
+    override val viewModel: TabletActivity.ViewModel by lazy {
         object : ViewModel {
 
             override fun navigateTo() {
-                supportFragmentManager.beginTransaction().replace(
-                        R.id.mainContainer, ListingsFragment()).commit()
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.mainContainer, ListingsFragment()).commit()
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.secondPaneContainer, IdFragment()).commit()
             }
 
             override fun showError(error: Throwable) {
-                showToastError(error)
+                showToast(error)
 
             }
         }
@@ -39,7 +42,7 @@ class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewMode
 
 }
 
-class MainPresenter(scheduler: Scheduler) : Presenter<HandsetActivity.ViewModel>(scheduler) {
+class TabletMainPresenter(scheduler: Scheduler) : Presenter<TabletActivity.ViewModel>(scheduler) {
     fun initState() {
         view?.navigateTo()
     }

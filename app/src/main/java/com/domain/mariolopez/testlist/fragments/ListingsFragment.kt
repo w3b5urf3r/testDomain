@@ -11,16 +11,13 @@ import com.domain.mariolopez.testlist.api.model.Listing
 import com.domain.mariolopez.testlist.ui.adapter.ListingsAdapter
 import com.domain.mariolopez.testlist.ui.presenter.Presenter
 import com.domain.mariolopez.testlist.ui.screens.ListingsFragmentUI
+import com.domain.mariolopez.testlist.util.RxBus
 import com.github.salomonbrys.kodein.instance
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.toast
 
-/**
- * Created by mariolopez on 26/8/17.
- */
 class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
 
     interface ViewModel : com.domain.mariolopez.testlist.ui.ViewModel {
@@ -30,20 +27,12 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
         //consumers
         fun showListings(listings: List<Listing>)
 
-        fun showId(adId: String)
-
     }
-
 
     var ui: ListingsFragmentUI? = null
 
     lateinit var listingsPresenter: ListingsPresenter
     val listingAdapter = ListingsAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ui = container?.let { ListingsFragmentUI(container) }
@@ -56,6 +45,7 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        retainInstance = true
         ui?.recycler?.adapter = listingAdapter
         ui?.recycler?.layoutManager = LinearLayoutManager(this.context)
         listingsPresenter = ListingsPresenter()
@@ -81,32 +71,16 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
             override fun showListings(listings: List<Listing>) {
                 (ui?.recycler?.adapter as? ListingsAdapter)?.items = listings
             }
-
-            override fun showId(adId: String) {
-                activity.toast(adId)
-            }
-
         }
     }
 }
 
 class ListingsPresenter : Presenter<ListingsFragment.ViewModel>() {
 
-    //    val busEvent: RxBus by kodein.instance()
     val restAdapter: RestAdapter by kodein.instance()
+    val busEvent: RxBus by kodein.instance()
 
     override fun bindReactive() {
-//        toDispose += peripheralEvents.subscribe {
-//            view!!.showOutPut(it.value.orEmpty())
-//        }
-//        toDispose += view!!
-//                .linkClicks
-//                no need to check bluetooth permission
-//                .compose(rxPermissions.ensure(Manifest.permission.BLUETOOTH))
-//                .subscribe {
-//                    view!!.linkHardware()
-//                    busEvent.post(Navigation.MAP_FRAGMENT())
-//                }
 
         toDispose += restAdapter.getListings()
                 .subscribeOn(Schedulers.io()) // “work” on io thread
@@ -117,8 +91,8 @@ class ListingsPresenter : Presenter<ListingsFragment.ViewModel>() {
 //                    Log.d("List", it.listings.toString())
                 }
 
-        view?.listingClicks()!!.subscribe {
-            view?.showId((it as Listing).adId)
+        toDispose += view?.listingClicks()!!.subscribe {
+            busEvent.post(it as Listing)
         }
     }
 }
