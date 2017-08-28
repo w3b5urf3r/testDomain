@@ -27,12 +27,15 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
         //consumers
         fun showListings(listings: List<Listing>)
 
+        fun saveState(listings: List<Listing>)
+
     }
 
     var ui: ListingsFragmentUI? = null
 
-    lateinit var listingsPresenter: ListingsPresenter
-    val listingAdapter = ListingsAdapter()
+    private lateinit var listingsPresenter: ListingsPresenter
+    private val listingAdapter = ListingsAdapter()
+    private var listState: List<Listing>? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ui = container?.let { ListingsFragmentUI(container) }
@@ -45,7 +48,6 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        retainInstance = true
         ui?.recycler?.adapter = listingAdapter
         ui?.recycler?.layoutManager = LinearLayoutManager(this.context)
         listingsPresenter = ListingsPresenter()
@@ -55,6 +57,7 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
     override fun onStart() {
         super.onStart()
     }
+
 
     override fun onDestroyView() {
         listingsPresenter.unbindView(viewModel)
@@ -71,14 +74,18 @@ class ListingsFragment : BaseFragment<ListingsFragment.ViewModel>() {
             override fun showListings(listings: List<Listing>) {
                 (ui?.recycler?.adapter as? ListingsAdapter)?.items = listings
             }
+
+            override fun saveState(listings: List<Listing>) {
+                listState = listings
+            }
         }
     }
 }
 
 class ListingsPresenter : Presenter<ListingsFragment.ViewModel>() {
 
-    val restAdapter: RestAdapter by kodein.instance()
-    val busEvent: RxBus by kodein.instance()
+    private val restAdapter: RestAdapter by kodein.instance()
+    private val busEvent: RxBus by kodein.instance()
 
     override fun bindReactive() {
 
@@ -88,6 +95,7 @@ class ListingsPresenter : Presenter<ListingsFragment.ViewModel>() {
                 .subscribe {
                     //todo
                     view?.showListings(it.listings)
+                    view?.saveState(it.listings)
 //                    Log.d("List", it.listings.toString())
                 }
 

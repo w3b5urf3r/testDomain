@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">testList</string>
     <string name="test_domain_mario">Test domain Mario</string>
+    <string name="format_rooms">%s bed, %s bath, %s car</string>
 </resources>

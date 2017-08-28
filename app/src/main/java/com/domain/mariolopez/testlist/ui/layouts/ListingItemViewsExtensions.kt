@@ -3,6 +3,7 @@ package com.domain.mariolopez.testlist.ui.layouts
 import android.graphics.Color
 import android.graphics.Typeface
 import android.support.v4.content.ContextCompat
+import android.widget.ImageView
 import android.widget.TextView
 import com.domain.mariolopez.testlist.R
 import org.jetbrains.anko.*
@@ -33,5 +34,12 @@ fun _LinearLayout.priceTextView(): TextView {
         setTextColor(ContextCompat.getColor(context, R.color.accent))
     }.lparams(height = wrapContent, width = matchParent) {
         topMargin = dip(10)
+    }
+}
+fun _LinearLayout.logoImageView(): ImageView {
+    return  imageView ().lparams(height = wrapContent, width = matchParent) {
+        height = dip(30)
+        width = dip(100)
+        topMargin = dip(5)
     }
 }

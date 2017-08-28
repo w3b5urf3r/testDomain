@@ -18,6 +18,7 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
 
     lateinit var houseImage: ImageView
     lateinit var houseImage2: ImageView
+    lateinit var agencyLogo: ImageView
 
     lateinit var price: TextView
     lateinit var rooms: TextView
@@ -60,6 +61,8 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
                     rooms = roomsTextView()
 
                     address = addressTextView()
+
+                    agencyLogo = logoImageView()
 
                 }.lparams(height = wrapContent, width = matchParent) {
                     leftMargin = dimen(R.dimen.abc_list_item_padding_horizontal_material)

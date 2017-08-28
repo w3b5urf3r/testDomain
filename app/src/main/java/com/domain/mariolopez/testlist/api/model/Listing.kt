@@ -5,40 +5,42 @@ import com.google.gson.annotations.SerializedName
 class Listing {
 
     @SerializedName("AdId")
-    val adId: String = ""
+    var adId: String = ""
+
     @SerializedName("AgencyLogoUrl")
-    val agencyLogoUrl: String = ""
+    var agencyLogoUrl: String = ""
 
     @SerializedName("Bathrooms")
-    val bathrooms: Int = 0
+    var bathrooms: Int = 0
 
     @SerializedName("Bedrooms")
     val bedrooms: Int = 0
 
     @SerializedName("Carspaces")
-    val carspaces: Int = 0
+    var carspaces: Int = 0
 
     @SerializedName("DisplayPrice")
-    val displayPrice: String = ""
+    var displayPrice: String = ""
 
     @SerializedName("DisplayableAddress")
-    val displayableAddress: String = ""
+    var displayableAddress: String = ""
 
     @SerializedName("TruncatedDescription")
-    val truncatedDescription: String = ""
+    var truncatedDescription: String = ""
 
     @SerializedName("RetinaDisplayThumbUrl")
-    val retinaDisplayThumbUrl: String = ""
+    var retinaDisplayThumbUrl: String = ""
 
     @SerializedName("SecondRetinaDisplayThumbUrl")
-    val secondRetinaDisplayThumbUrl: String = ""
+    var secondRetinaDisplayThumbUrl: String = ""
 
     @SerializedName("IsElite")
-    val isEliteNum: Int = 0
+    var isEliteNum: Int = 0
 
     val isEliteBoolean: Boolean
         get() = isEliteNum.binaryIntToBoolean()
 
 }
+
 
 fun Int.binaryIntToBoolean(): Boolean = this == 1

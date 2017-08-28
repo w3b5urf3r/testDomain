@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".HandsetActivity" />
-        <activity android:name=".TabletActivity" />
+        <activity
+            android:name=".HandsetActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".TabletActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".SplashDomain"
             android:theme="@style/SplashIntroTheme">

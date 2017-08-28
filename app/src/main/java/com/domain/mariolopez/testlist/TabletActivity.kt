@@ -28,7 +28,7 @@ class TabletActivity : BaseActivity<TabletActivityUI, TabletActivity.ViewModel>(
 
             override fun navigateTo() {
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.mainContainer, ListingsFragment()).commit()
+                        .replace(R.id.mainContainer, ListingsFragment(),"CIAO").commit()
                 supportFragmentManager.beginTransaction()
                         .replace(R.id.secondPaneContainer, IdFragment()).commit()
             }
