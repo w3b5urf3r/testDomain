@@ -38,7 +38,7 @@ allprojects {
         rxAndroidVersion = "2.0.1"
         rxKotlinVersion = "2.0.0"
         rx2bindings = "2.0.0"
-        robolectricVersion = "3.3.2"
+        robolectricVersion = "3.4.2"
 
         junitVersion = "4.12"
         okhttpVersion = "3.6.0"

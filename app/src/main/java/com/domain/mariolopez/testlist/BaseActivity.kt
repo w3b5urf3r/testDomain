@@ -31,20 +31,10 @@ abstract class BaseActivity<out UI : ActivityAnkoComponent<out AppCompatActivity
     }
 
     protected open fun initPresenter() {
-
     }
 
-    protected fun showToastUi(message: String) {
+    fun showToastUi(message: String) {
         toast(message)
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
 }

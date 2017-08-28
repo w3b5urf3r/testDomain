@@ -7,6 +7,9 @@ import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.provider
 
 object MainComponent {
+    fun mainComponent() = Kodein {
+        TestListComponent()
+    }
 
     fun Kodein.Builder.TestListComponent() {
 
