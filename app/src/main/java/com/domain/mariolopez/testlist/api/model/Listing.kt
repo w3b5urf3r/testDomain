@@ -2,7 +2,7 @@ package com.domain.mariolopez.testlist.api.model
 
 import com.google.gson.annotations.SerializedName
 
-class Listing {
+class Listing  {
 
     @SerializedName("AdId")
     var adId: String = ""

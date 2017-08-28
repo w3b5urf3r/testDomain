@@ -11,11 +11,7 @@ import com.domain.mariolopez.testlist.ui.ViewAnkoComponent
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-/**
- * Created by mariolopez on 27/8/17.
- */
 class ListingItemUI(override val view: RecyclerView) : ViewAnkoComponent<RecyclerView> {
-
 
     lateinit var houseImage: ImageView
     lateinit var agencyLogo: ImageView

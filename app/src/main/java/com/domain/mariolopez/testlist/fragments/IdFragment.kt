@@ -22,7 +22,7 @@ class IdFragment : BaseFragment<IdFragment.ViewModel>() {
 
     var ui: IdFragmentUI? = null
 
-    lateinit var idPresenter: IdPresenter
+    private lateinit var idPresenter: IdPresenter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ui = container?.let { IdFragmentUI(container) }
@@ -62,7 +62,7 @@ class IdFragment : BaseFragment<IdFragment.ViewModel>() {
 
 class IdPresenter : Presenter<IdFragment.ViewModel>() {
 
-    val busEvent: RxBus by kodein.instance()
+    private val busEvent: RxBus by kodein.instance()
 
     override fun bindReactive() {
         toDispose += busEvent.rxBus

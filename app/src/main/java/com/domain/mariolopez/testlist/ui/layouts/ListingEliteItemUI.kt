@@ -1,5 +1,6 @@
 package com.domain.mariolopez.testlist.ui.layouts
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.ViewGroup
@@ -10,9 +11,6 @@ import com.domain.mariolopez.testlist.ui.ViewAnkoComponent
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
-/**
- * Created by mariolopez on 27/8/17.
- */
 class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<RecyclerView> {
 
 
@@ -24,6 +22,7 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
     lateinit var rooms: TextView
     lateinit var address: TextView
 
+    @SuppressLint("PrivateResource")
     override fun createView(ui: AnkoContext<RecyclerView>) = with(ui) {
 
         cardView {

@@ -5,10 +5,6 @@ import com.domain.mariolopez.testlist.di.MainComponent.TestListComponent
 import com.github.salomonbrys.kodein.KodeinAware
 import com.github.salomonbrys.kodein.conf.ConfigurableKodein
 
-/**
- * Created by mariolopez on 25/8/17.
- */
-
 open class App : Application(),KodeinAware{
     override val kodein = ConfigurableKodein()
 

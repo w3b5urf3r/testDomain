@@ -3,9 +3,9 @@ package com.domain.mariolopez.testlist
 import com.domain.mariolopez.testlist.api.model.Listing
 import com.domain.mariolopez.testlist.fragments.ListingsFragment
 import com.domain.mariolopez.testlist.ui.presenter.Presenter
+import com.domain.mariolopez.testlist.ui.screens.HandsetActivityUI
 import com.domain.mariolopez.testlist.util.RxBus
 import com.github.salomonbrys.kodein.instance
-import com.maxwellforest.safedome.ui.screens.HandsetActivityUI
 import io.reactivex.Scheduler
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
@@ -44,7 +44,7 @@ class HandsetActivity : BaseActivity<HandsetActivityUI, HandsetActivity.ViewMode
 }
 
 class MainPresenter(scheduler: Scheduler) : Presenter<HandsetActivity.ViewModel>(scheduler) {
-    val busEvent: RxBus by kodein.instance()
+    private val busEvent: RxBus by kodein.instance()
     override fun bindReactive() {
         super.bindReactive()
         toDispose += busEvent.rxBus

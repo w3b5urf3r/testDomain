@@ -1,4 +1,4 @@
-package com.maxwellforest.safedome.ui.screens
+package com.domain.mariolopez.testlist.ui.screens
 
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.Toolbar

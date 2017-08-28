@@ -20,7 +20,7 @@ class BasePresenterTest {
     @Before
     fun `before Each Test`() {
         view = object : ViewModel {}
-        presenter = Presenter<ViewModel>()
+        presenter = Presenter()
     }
 
     @After

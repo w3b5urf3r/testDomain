@@ -9,12 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.Type
 
 
-/**
- * Created by mariolopez on 25/8/17.
- */
 class RestAdapter {
 
-    var domainApi: DomainApi = Retrofit.Builder()
+    private var domainApi: DomainApi = Retrofit.Builder()
             .baseUrl("https://rest.domain.com.au")
             .addConverterFactory(getListingsGsonConverter())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -35,7 +32,7 @@ class RestAdapter {
 
     }
 
-    fun getListingsGsonConverter(): GsonConverterFactory {
+    private fun getListingsGsonConverter(): GsonConverterFactory {
         val gson = GsonBuilder()
                 .registerTypeAdapter(ListingResults::class.java, ListingTypeAdapter())
                 .create()

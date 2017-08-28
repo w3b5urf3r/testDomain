@@ -6,9 +6,6 @@ import android.view.View
 import com.domain.mariolopez.testlist.ui.ViewModel
 import com.github.salomonbrys.kodein.LazyKodein
 
-/**
- * Created by mariolopez on 10/4/17.
- */
 abstract class BaseFragment<out VM : ViewModel> : Fragment(){
 
     abstract val viewModel: VM

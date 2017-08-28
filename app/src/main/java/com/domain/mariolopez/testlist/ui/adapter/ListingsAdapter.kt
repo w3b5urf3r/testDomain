@@ -56,10 +56,10 @@ class ListingsAdapter : BaseAdapter<Listing>() {
     override fun onCreateComponent(parent: RecyclerView, viewType: Int): ViewAnkoComponent<RecyclerView> {
 
         val isElite = viewType.binaryIntToBoolean()
-        if (isElite) {
-            return ListingEliteItemUI(parent)
+        return if (isElite) {
+            ListingEliteItemUI(parent)
         } else {
-            return ListingItemUI(parent)
+            ListingItemUI(parent)
         }
     }
 
