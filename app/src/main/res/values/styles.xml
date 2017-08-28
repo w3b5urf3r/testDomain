@@ -7,15 +7,24 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
 
-        <!--for sake of simplicity of this app I'm going to have just one style.xm with suppress attribute-->
+
         <!--I personally don't like these attributes, but I put them here in case as showcase..-->
         <!--<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>-->
         <!--<item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
 
+        <!--for sake of simplicity of this app I'm going to have just one style.xm with suppress attribute
+        instead of multiple styles based on version-->
+        <!--A BIT OF MATERIAL DESIGN-->
         <item name="android:windowActivityTransitions" tools:targetApi="lollipop">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">true</item>
-        <!--<item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">@android:transition/move</item>-->
-        <!--<item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">@android:transition/move</item>-->
+        <item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">true
+        </item>
+        <item name="android:windowSharedElementEnterTransition" tools:targetApi="lollipop">
+            @android:transition/move
+        </item>
+        <item name="android:windowSharedElementExitTransition" tools:targetApi="lollipop">
+            @android:transition/move
+        </item>
+
     </style>
 
     <style name="SplashIntroTheme" parent="Theme.AppCompat.NoActionBar">

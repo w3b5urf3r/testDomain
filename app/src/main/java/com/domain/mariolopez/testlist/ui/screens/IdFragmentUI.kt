@@ -1,6 +1,7 @@
 package com.domain.mariolopez.testlist.ui.screens
 
 import android.annotation.SuppressLint
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -18,8 +19,9 @@ class IdFragmentUI(override val view: ViewGroup) : ViewAnkoComponent<ViewGroup> 
         frameLayout {
             backgroundResource = R.color.background_material_light
             idTv= textView {
+                gravity = Gravity.CENTER
                 setTextAppearanceC(R.style.TextAppearance_AppCompat_Display1)
-            }.lparams(wrapContent, wrapContent)
+            }.lparams(matchParent, matchParent)
 
         }
     }

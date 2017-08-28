@@ -11,6 +11,9 @@ import com.domain.mariolopez.testlist.ui.ViewAnkoComponent
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
+/**
+ * Created by mariolopez on 27/8/17.
+ */
 class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<RecyclerView> {
 
 
@@ -34,6 +37,7 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
             useCompatPadding = true
 
             verticalLayout {
+                backgroundResource = R.drawable.bg_card
                 padding = dimen(R.dimen.abc_list_item_padding_horizontal_material)
                 relativeLayout {
                     space {
@@ -63,17 +67,15 @@ class ListingEliteItemUI(override val view: RecyclerView) : ViewAnkoComponent<Re
 
                     agencyLogo = logoImageView()
 
-                }.lparams(height = wrapContent, width = matchParent) {
-                    leftMargin = dimen(R.dimen.abc_list_item_padding_horizontal_material)
+                }.lparams(height = wrapContent, width = matchParent)
+                        .applyRecursively { view ->
+                            when (view) {
+                                is TextView -> {
+                                    view.ellipsize = TextUtils.TruncateAt.END
+                                }
 
-                }.applyRecursively { view ->
-                    when (view) {
-                        is TextView -> {
-                            view.ellipsize = TextUtils.TruncateAt.END
+                            }
                         }
-
-                    }
-                }
             }
         }
     }

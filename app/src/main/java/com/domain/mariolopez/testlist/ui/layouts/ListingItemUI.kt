@@ -31,7 +31,9 @@ class ListingItemUI(override val view: RecyclerView) : ViewAnkoComponent<Recycle
             preventCornerOverlap = true
             useCompatPadding = true
 
+
             linearLayout {
+                backgroundResource = R.drawable.bg_card
 
                 padding = dimen(R.dimen.abc_list_item_padding_horizontal_material)
 
