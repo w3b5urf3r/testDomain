@@ -42,6 +42,10 @@ dependencies {
     testImplementation "org.assertj:assertj-core:$assertJcoreVersion"
 //    androidTestCompile "org.mockito:mockito-android:2.8.9"
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
+    testCompile "org.robolectric:robolectric:$robolectricVersion"
+    testCompile "org.robolectric:shadows-multidex:$robolectricVersion"
+    testCompile "org.robolectric:shadows-support-v4:$robolectricVersion"
+
 
 
     androidTestImplementation 'com.android.support.test:runner:1.0.0'
